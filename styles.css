@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f2f5;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.calculator {
+  width: 380px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  padding: 24px;
+}
+
+.display {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.expression {
+  font-size: 16px;
+  color: #8b95a5;
+  min-height: 24px;
+  word-break: break-all;
+  text-align: right;
+  width: 100%;
+}
+
+.result {
+  font-size: 40px;
+  font-weight: 600;
+  color: #1a1d23;
+  margin-top: 4px;
+  word-break: break-all;
+  text-align: right;
+  width: 100%;
+  line-height: 1.2;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* Scientific rows: 5 columns */
+.btn:nth-child(-n+10) {
+  /* First 10 buttons are in 5-col rows */
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* Override to 5 columns for scientific function rows */
+.btn:nth-child(1), .btn:nth-child(2), .btn:nth-child(3),
+.btn:nth-child(4), .btn:nth-child(5),
+.btn:nth-child(6), .btn:nth-child(7), .btn:nth-child(8),
+.btn:nth-child(9), .btn:nth-child(10),
+.btn:nth-child(11), .btn:nth-child(12), .btn:nth-child(13),
+.btn:nth-child(14), .btn:nth-child(15) {
+  /* These need 5-col layout */
+}
+
+/* Use a cleaner grid approach */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  gap: 10px;
+}
+
+/* 5-column buttons: span 4 of 20 */
+.btn {
+  grid-column: span 5;
+  height: 56px;
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 4-column buttons: span 5 of 20 */
+.btn.num, .btn.op, .btn.equals {
+  grid-column: span 5;
+}
+
+/* Zero button spans 2 columns */
+.btn.zero {
+  grid-column: span 10;
+}
+
+/* Number buttons */
+.btn.num {
+  background: #f0f2f5;
+  color: #1a1d23;
+}
+
+.btn.num:hover {
+  background: #e4e6ea;
+}
+
+.btn.num:active {
+  background: #d8dae0;
+  transform: scale(0.96);
+}
+
+/* Function buttons */
+.btn.fn {
+  background: #eef0f4;
+  color: #5a6577;
+  font-size: 15px;
+  grid-column: span 4;
+}
+
+.btn.fn:hover {
+  background: #e2e5eb;
+}
+
+.btn.fn:active {
+  background: #d5d9e0;
+  transform: scale(0.96);
+}
+
+/* Control buttons (AC, DEL) */
+.btn.control {
+  background: #eef0f4;
+  color: #e74c3c;
+  font-weight: 600;
+  grid-column: span 4;
+}
+
+.btn.control:hover {
+  background: #fde8e6;
+}
+
+.btn.control:active {
+  background: #f9d4d0;
+  transform: scale(0.96);
+}
+
+/* Operator buttons */
+.btn.op {
+  background: #eef0f4;
+  color: #4a7cff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.btn.op:hover {
+  background: #e0e8ff;
+}
+
+.btn.op:active {
+  background: #d0dcff;
+  transform: scale(0.96);
+}
+
+/* Equals button */
+.btn.equals {
+  background: #4a7cff;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.btn.equals:hover {
+  background: #3a6aee;
+}
+
+.btn.equals:active {
+  background: #2d5ad8;
+  transform: scale(0.96);
+}
+
+/* Active operator highlight */
+.btn.op.active {
+  background: #4a7cff;
+  color: #ffffff;
+}
+
+/* Error state */
+.result.error {
+  color: #e74c3c;
+  font-size: 24px;
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+  .calculator {
+    width: 100%;
+    border-radius: 0;
+    min-height: 100vh;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display {
+    flex: 0 0 auto;
+  }
+
+  .buttons {
+    flex: 1;
+    align-content: end;
+  }
+
+  .btn {
+    height: 52px;
+  }
+
+  .result {
+    font-size: 36px;
+  }
+}
